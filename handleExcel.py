@@ -2,9 +2,9 @@ import sys
 from pathlib import Path
 import win32com.client as win32
 
-from config import EXCEL_PATH, AR_TEMPLATE_PATH, OUTPUT_AR_FILE_NAME, SHIFTS_AR_NAMES, START_COLUMN, END_COLUMN
+from config import EXCEL_PATH, AR_TEMPLATE_PATH, SHIFTS_AR_NAMES, START_COLUMN, END_COLUMN
 from constant import EXCEL_APPLICATION
-from helper import getDayNames
+from helper import getDayNames, createFileName
 
 def handleExcel(shift):
 
@@ -33,7 +33,7 @@ def handleExcel(shift):
         start+":"+end).Copy(Destination=approvalFile.Worksheets("Sheet1").Range("A2"))
 
     # Create AR report
-    approvalFilePath = str(Path.cwd() / OUTPUT_AR_FILE_NAME)
+    approvalFilePath = str(Path.cwd() / (createFileName(shift)))
     approvalFile.SaveAs(approvalFilePath)
     approvalFile.Close()
     print("Completed creating AR Report!")

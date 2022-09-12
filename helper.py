@@ -16,6 +16,10 @@ def getSubject(shiftName):
     today = date.today().strftime("%A %B %d")
     return SHIFTS_END_TIME[shiftName] + " VI-VN Handover: " + today
 
+def createFileName(shiftName):
+    today = date.today().strftime("%B_%d")
+    return  "Approval_File_" + today + ".xlsx"
+
 
 def getFakeDays():
     today = date.today() - timedelta(days=2)
